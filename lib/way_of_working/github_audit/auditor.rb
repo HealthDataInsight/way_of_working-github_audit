@@ -16,7 +16,7 @@ module WayOfWorking
           @client.get("repos/#{repository.full_name}/rulesets/#{rule[:id]}")
         end
 
-        Rules::Registry.rules.each do |rule_name, klass|
+        Array(Rules::Registry.rules).each do |rule_name, klass|
           rule = klass.new(client, rule_name, repository, rulesets)
 
           yield rule
