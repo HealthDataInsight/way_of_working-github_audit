@@ -4,7 +4,7 @@ require 'way_of_working/cli'
 require_relative 'github_audit/paths'
 require 'zeitwerk'
 
-loader = Zeitwerk::Loader.for_gem_extension(WayOfWorking::GithubAudit)
+loader = Zeitwerk::Loader.for_gem_extension(WayOfWorking)
 loader.setup
 
 module WayOfWorking
@@ -13,19 +13,31 @@ module WayOfWorking
   end
 
   module SubCommands
-    # # This reopens the "way_of_working exec" sub command
-    # class Exec
-    #   register(GithubAudit::Generators::Exec, 'github_audit', 'github_audit',
-    # end
+    # This reopens the "way_of_working exec" sub command
+    class Exec
+      register(GithubAudit::Generators::Exec, 'github_audit', 'github_audit',
+               <<~LONGDESC)
+                 Description:
+                     This runs the GitHub audit
+
+                 Example:
+                     way_of_working exec github_audit
+               LONGDESC
+    end
 
     # # This reopens the "way_of_working init" sub command
     # class Init
     #   register(GithubAudit::Generators::Init, 'github_audit', 'github_audit',
-    # end
+    #            <<~LONGDESC)
+    #              Description:
+    #                  Installs GitHub audit documentation files into the project
 
-    # # This reopens the "way_of_working new" sub command
-    # class New
-    #   register(GithubAudit::Generators::New, 'github_audit', 'github_audit [NAME]',
+    #              Example:
+    #                  way_of_working init github_audit
+
+    #                  This will create:
+    #                      docs/way_of_working/github-audit/TODO
+    #            LONGDESC
     # end
   end
 end
