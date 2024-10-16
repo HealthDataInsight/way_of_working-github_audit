@@ -61,7 +61,8 @@ module WayOfWorking
               next
             end
 
-            say("#{repo.name} [#{repo.private? ? 'Private' : 'Public'}] #{repo.description} #{repo.language} #{repo.topics.join(',')}")
+            say("#{repo.name} [#{repo.private? ? 'Private' : 'Public'}] #{repo.description} " \
+                "#{repo.language} #{repo.topics.join(',')}")
 
             @auditor.audit(repo) do |rule|
               case rule.status
